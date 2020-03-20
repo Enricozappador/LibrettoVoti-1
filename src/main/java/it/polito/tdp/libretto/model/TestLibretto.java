@@ -31,8 +31,31 @@ public class TestLibretto {
 	lib.add(v9);
 	lib.add(v10);
 	
-	//System.out.println(this.lib); 
+	if(lib.add(new Voto("Analisi II", 28, LocalDate.now()))==false) {
+		System.out.println("Errore nell'inserimento di Analisi II"); 
+	}
+	
+	System.out.println(this.lib); 
 	System.out.println(this.lib.estraiVotiUguali(28));
+	
+	String nomeCorso = "Analisi II"; 
+	Voto voto = lib.cercaNomeCorso(nomeCorso); 
+	
+	System.out.println("Il voto di "+nomeCorso+" è "+ voto.getVoto()+"\n"); 
+	
+	Voto votomancante = lib.cercaNomeCorso("Programmazione delle Merendine"); 
+	
+	System.out.println("Il voto di Programmazione delle Merendine è "+ votomancante+"\n"); 
+	
+	
+	Voto inform2 = new Voto("Informatica", 24, LocalDate.now()); 
+	Voto inform3 = new Voto("Informatica", 23, LocalDate.now()); 
+	
+	System.out.println("Informatica con 24 è duplicato: "+lib.isDuplicato(inform2)+ "/ conflitto: "+lib.isConflitto(inform2)); 
+	
+	System.out.println("Informatica con 23 è duplicato: "+lib.isDuplicato(inform3)+ "/ conflitto: "+lib.isConflitto(inform3)); 
+	
+	
 	}
 	
 	public static void main(String[] args) {
