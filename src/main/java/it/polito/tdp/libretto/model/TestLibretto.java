@@ -56,6 +56,23 @@ public class TestLibretto {
 	System.out.println("Informatica con 23 è duplicato: "+lib.isDuplicato(inform3)+ "/ conflitto: "+lib.isConflitto(inform3)); 
 	
 	
+	Libretto migliorato = lib.creaLibrettoMigliorato();
+	System.out.println("Miglioramento del libretto : \n");
+	System.out.println(lib);
+	System.out.println(migliorato);
+	
+	Libretto alfabetico = new Libretto(lib);
+	alfabetico.ordinaPerCorso();
+	System.out.println(alfabetico); 
+	
+	Libretto votidecrescenti = new Libretto(lib);
+	votidecrescenti.ordinaPerVoto();
+	System.out.println(votidecrescenti); 
+	
+	Libretto novotiscarsi = new Libretto(lib); 
+	novotiscarsi.CancellaVotiBrutti();
+	System.out.println(novotiscarsi);
+	
 	}
 	
 	public static void main(String[] args) {

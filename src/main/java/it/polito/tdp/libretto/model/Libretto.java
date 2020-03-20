@@ -1,11 +1,23 @@
 package it.polito.tdp.libretto.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Libretto {
 
 	private List<Voto> voti = new ArrayList<>();
+	
+	public Libretto () {
+		super();
+	
+	}
+	
+	public Libretto(Libretto lib) {
+		super();
+		this.voti.addAll(lib.voti);
+		
+	}
 		
 		public boolean add(Voto v){
 			if(this.isConflitto(v)|| this.isDuplicato(v)) {
@@ -80,8 +92,47 @@ public class Libretto {
 			
 		}
 		
+		public Libretto creaLibrettoMigliorato() {
+			Libretto nuovo = new Libretto(); 
+			for (Voto v : this.voti) {
+				Voto v2 = new Voto(v); 
+				if(v2.getVoto()>= 24) {
+					v2.setVoto(v2.getVoto()+2);
+					if(v2.getVoto()>30) {
+						v2.setVoto(30);
+					}
+					
+					
+					}
+				else if(v2.getVoto()>=18) {
+						v2.setVoto(v2.getVoto()+1);
+					}
+				nuovo.add(v2);
+			}
+			return nuovo;	
+		}
 		
+		public void ordinaPerCorso() {
+		Collections.sort(this.voti);
+			
+		}
+
+		public void ordinaPerVoto() {
+			Collections.sort(this.voti, new ConfrontaVotiPerValutazione());			
+		}
 		
+		public void CancellaVotiBrutti() {
+			List<Voto> daRimuovere = new ArrayList<>();
+			for(Voto v : this.voti) {
+				if(v.getVoto()<24) {
+					daRimuovere.add(v);
+				}
+			}
+		this.voti.removeAll(daRimuovere);
+			
+		}
+		
+	
 	} 
 	
 	
